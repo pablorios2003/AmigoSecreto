@@ -6,10 +6,12 @@ let lista =  document.getElementById("listaAmigos");
 
 
 //Facilitamos la manera de traer un elemento del HTML
-function TraerHTMLS(Id,Texto){
+function TraerHtmlConTexto(Id,Texto){
    let ElementoHTML = document.getElementById(Id);
     ElementoHTML.innerHTML = Texto;
-
+}
+function TraerHtmlSinTexto(id){
+    return document.getElementById(id);
 }
 
 //Funcion para agregar nombre de amigos a la lista a sortear 
@@ -37,16 +39,21 @@ function sortearAmigo(){
     }
     else {
         if(NumeroDeSorteos > NombreAmigo.length){
+            //Condicionamos para que no se intenta mas de la cantidad de nombres disponibles
             alert("Ya no hay mas nombres para sortear");
-            let Boton = document.getElementById('Sorteo');
-            Boton.setAttribute('disabled',true);
+            //Traer elementos 
+            let BotonSortear = TraerHtmlSinTexto('Sorteo');
+            let BotonAñadir = TraerHtmlSinTexto('btnAñadir');
+            //Agregar atributo para no poder usarse
+            BotonAñadir.setAttribute('disabled',true);
+            BotonSortear.setAttribute('disabled',true);
         }else {
+            //Sorteamos el nombre y se lo mostramos al usuario
             let Sorteo = AmigoAleatorio();
-            TraerHTMLS('resultado',`Tu amigo secreto es: ${NombreAmigo[Sorteo]}`);
+            TraerHtmlConTexto('resultado',`Tu amigo secreto es: ${NombreAmigo[Sorteo]}`);
             NumeroDeSorteos ++;
         }
     }
-
 
 }
 
@@ -68,24 +75,6 @@ function AmigoAleatorio(){
 function LimpiarCampo(){
     document.getElementById('amigo').value = '';
    
-}
-
-function actualizarListaAmigos() {
-    // Obtener el elemento <ul> donde agregaremos los <li>
-    let lista = document.getElementById("listaAmigos");
-
-    // Limpiar la lista existente
-    lista.innerHTML = "";
-
-    // Iterar sobre el array de amigos
-    for (let i = 0; i < NombreAmigo.length; i++) {
-        // Crear un nuevo <li> para cada amigo
-        let li = document.createElement("li");
-        li.textContent = NombreAmigo[i];  // Asignar el nombre del amigo al <li>
-
-        // Agregar el <li> a la lista <ul>
-        lista.appendChild(li);
-    }
 }
 
 function MostrarAmigos(){
