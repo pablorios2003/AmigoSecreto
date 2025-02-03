@@ -7,3 +7,11 @@
 - Detener juego cuando no hay mas nombres para sortear
 - Limpiar campo cuando se añade un nombre
 - Mostrar en pantalla los nombres ingresados
+
+
+<h2> Proximas actualizaciones: </h2>
+- Editar Nombres
+- Eliminar Nombres
+- Reiniciar Juego
+- Validar caracteres especiales
+- Validar minimo y maximo de caracteres
